@@ -157,6 +157,7 @@
                     Yes, I'd love to! 💖
                 </button>
                 <button id="no-btn"
+                onclick="noClicked()"
                     class="px-12 py-4 rounded-full border-2 border-pink-500 text-pink-500 font-semibold hover:bg-pink-50 transition-all duration-300 text-xl">
                     No way 🤔
                 </button>
@@ -276,6 +277,7 @@ function showValentinePage() {
 
 // No button evasion animation
 function moveNoButton() {
+    return
     const btn = document.getElementById('no-btn');
     const valentinePage = document.getElementById('valentine-page');
     const maxX = valentinePage.offsetWidth - btn.offsetWidth;
@@ -401,32 +403,29 @@ function whatsappShare() {
     window.open(url, '_blank');
 }
 
-// Track no button clicks for extra fun
 let noClickCount = 0;
 function noClicked() {
     const yesBtn = document.getElementById('yes-btn');
     noClickCount++;
     
+    const newScale = 1 + noClickCount * 0.2; 
+    
+    gsap.to(yesBtn, {
+        duration: 0.5,
+        scale: newScale,
+        ease: 'back.out(1.7)'
+    });
     if (noClickCount >= 5) {
         gsap.to(yesBtn, {
-            duration: 0.5,
-            scale: 2,
-            ease: 'back.out(1.7)'
-        });
-    }
-    
-    if (noClickCount >= 10) {
-        gsap.to(yesBtn, {
             duration: 1,
-            scale: 4,
+            scale: newScale + 1,
             ease: 'elastic.out(1, 0.3)'
         });
-        
-        // Make hearts rain more intensely
         for (let i = 0; i < 20; i++) {
             setTimeout(createHeart, i * 50);
         }
     }
 }
+
 </script>
 </
