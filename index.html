@@ -280,8 +280,8 @@ function moveNoButton() {
     const valentinePage = document.getElementById('valentine-page');
     const maxX = valentinePage.offsetWidth - btn.offsetWidth;
     const maxY = valentinePage.offsetHeight - btn.offsetHeight;
-    const newX = Math.random() * (maxX - 1);
-    const newY = Math.random() * (maxY - 1);
+    const newX = Math.random() * (maxX - 50);
+    const newY = Math.random() * (maxY - 60);
     gsap.to(btn, {
         duration: 0.1,
         x: newX,
