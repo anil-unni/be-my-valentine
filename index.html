@@ -83,7 +83,7 @@
         }
     </style>
 </head>
-<div class="min-h-screen bg-gradient-to-br from-red-100 via-pink-200 to-purple-100 p-4 overflow-x-hidden">
+<body class="min-h-screen bg-gradient-to-br from-red-100 via-pink-200 to-purple-100 p-4 overflow-x-hidden">
     <div class="container mx-auto max-w-4xl">
         <!-- Admin Page -->
         <div id="admin-page" class="relative glass-morph rounded-3xl p-8 shadow-2xl mb-4 overflow-hidden hover-shine">
@@ -174,14 +174,14 @@
         </div>
     </div>
 
-    <div class="fixed bottom-6 left-6">
+    <div class="fixed bottom-16 left-6">
         <button onclick="createYourOwn()" 
             class="px-8 py-3 rounded-full glass-morph text-pink-500 font-semibold shadow-xl button-pop">
             ✨ Create Your Own
         </button>
     </div>
 
-    <footer class="fixed bottom-6 right-6 glass-morph text-pink-500 font-medium px-6 py-3 rounded-full">
+    <footer class="fixed bottom-6 right-6 glass-morph text-pink-500 font-medium px-6 py-3 rounded-full text-sm md:text-base">
         Created with ❤️ by <a href="https://anilunni.me" class="hover:text-pink-400 underline">anilunni.me</a>
     </footer>
 <script>
@@ -277,7 +277,6 @@ function showValentinePage() {
 
 // No button evasion animation
 function moveNoButton() {
-    return
     const btn = document.getElementById('no-btn');
     const valentinePage = document.getElementById('valentine-page');
     const maxX = valentinePage.offsetWidth - btn.offsetWidth;
@@ -428,4 +427,5 @@ function noClicked() {
 }
 
 </script>
-</
+</body>
+</html>
