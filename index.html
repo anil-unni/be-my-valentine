@@ -1,80 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .fancy-title {
             font-family: 'Dancing Script', cursive;
         }
-        
+
         @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-100px) rotate(10deg); }
-            66% { transform: translateY(-150px) rotate(-10deg); }
-            100% { transform: translateY(-300px) rotate(0deg); }
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            33% {
+                transform: translateY(-100px) rotate(10deg);
+            }
+
+            66% {
+                transform: translateY(-150px) rotate(-10deg);
+            }
+
+            100% {
+                transform: translateY(-300px) rotate(0deg);
+            }
         }
-        
+
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            40% { transform: scale(1); }
-            60% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.1);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         .floating-heart {
             animation: float 4s ease-in-out forwards;
         }
-        
+
         .heartbeat {
             animation: heartbeat 1.2s ease-in-out infinite;
         }
-        
+
         .card-shine {
             position: absolute;
             top: 0;
             left: -100%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(
-                to right,
-                rgba(255,255,255,0) 0%,
-                rgba(255,255,255,0.4) 50%,
-                rgba(255,255,255,0) 100%
-            );
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0) 100%);
             transform: skewX(-25deg);
             transition: 1s;
         }
-        
+
         .hover-shine:hover .card-shine {
             left: 200%;
             transition: 1s;
         }
-        
+
         .glass-morph {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .button-pop {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .button-pop:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .gradient-text {
             background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
             -webkit-background-clip: text;
@@ -83,352 +109,376 @@
         }
     </style>
 </head>
+
 <body class="min-h-screen bg-gradient-to-br from-red-100 via-pink-200 to-purple-100 p-4 overflow-x-hidden">
     <div class="container mx-auto max-w-4xl">
         <div class="container mx-auto max-w-4xl relative mb-20"></div>
-            <button onclick="createYourOwn()" 
+        <button onclick="createYourOwn()"
             class="fixed top-4 right-4 px-8 py-3 rounded-full glass-morph text-pink-500 font-semibold shadow-xl button-pop z-10">
             ✨ Create Your Own
+        </button>
+    </div>
+    </div>
+    <!-- Admin Page -->
+    <div id="admin-page" class="relative glass-morph rounded-3xl p-8 shadow-2xl mb-4 overflow-hidden hover-shine">
+        <div class="card-shine"></div>
+        <h2
+            class="fancy-title text-4xl md:text-5xl font-bold text-center gradient-text mb-8 transition-all hover:scale-105">
+            Create Your Valentine's Proposal
+            <span class="inline-block heartbeat ml-2">💝</span>
+        </h2>
+
+        <form id="proposal-form" class="space-y-8 max-w-md mx-auto">
+            <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
+                <label class="block text-sm font-medium text-pink-600">Their Name</label>
+                <input type="text" id="to-name" required
+                    class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
+            </div>
+
+            <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
+                <label class="block text-sm font-medium text-pink-600">Your Name</label>
+                <input type="text" id="from-name" required
+                    class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
+            </div>
+
+            <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
+                <label class="block text-sm font-medium text-pink-600">Choose a Message</label>
+                <select id="message-select"
+                    class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
+                    <option disabled value="">-- Select a message --</option>
+                    <option value="msg1">You make my heart skip a beat every time I see you. Will you be my Valentine?
+                        💗</option>
+                    <option value="msg2">Every moment with you feels like magic. Would you do me the honor of being my
+                        Valentine? ✨</option>
+                    <option value="msg3">You're the missing piece to my puzzle. Be my Valentine? 🧩</option>
+                    <option value="msg4">Life is sweeter with you in it. Will you be my Valentine? 🍬</option>
+                    <option value="custom">Write your own message... ✍️</option>
+                </select>
+            </div>
+
+            <div id="custom-message-container"
+                class="space-y-2 hidden transform transition-all duration-300 hover:scale-102">
+                <label class="block text-sm font-medium text-pink-600">Your Custom Message</label>
+                <textarea id="custom-message" rows="4"
+                    class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full py-4 px-8 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-semibold shadow-lg button-pop">
+                Create Proposal 💝
+            </button>
+        </form>
+
+        <div id="generated-link"
+            class="mt-8 p-6 glass-morph rounded-2xl hidden transform transition-all duration-300 hover:scale-102">
+            <p class="text-pink-600 font-medium mb-4">Share this link with your Valentine:</p>
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="#" class="text-pink-500 break-all hover:text-pink-600 flex-1" id="proposal-link"></a>
+                <button onclick="copyLink()" class="px-6 py-3 bg-pink-500 text-white rounded-xl button-pop">
+                    Copy 📋
+                </button>
+                <button onclick="whatsappShare()" class="px-6 py-3 bg-green-500 text-white rounded-xl button-pop">
+                    Share on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valentine Page -->
+    <div id="valentine-page" class="relative glass-morph rounded-3xl p-8 shadow-2xl text-center hidden hover-shine">
+        <div class="card-shine"></div>
+        <h1 id="title" class="fancy-title text-5xl md:text-6xl font-bold gradient-text mb-8"></h1>
+        <div id="message" class="text-2xl md:text-3xl text-pink-500 mb-12 leading-relaxed"></div>
+
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <button onclick="acceptProposal()" id="yes-btn"
+                class="px-12 py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-semibold shadow-xl button-pop text-xl">
+                Yes, I'd love to! 💖
+            </button>
+            <button id="no-btn" onclick="noClicked()"
+                class="px-12 py-4 rounded-full border-2 border-pink-500 text-pink-500 font-semibold hover:bg-pink-50 transition-all duration-300 text-xl">
+                No way 🤔
             </button>
         </div>
     </div>
-        <!-- Admin Page -->
-        <div id="admin-page" class="relative glass-morph rounded-3xl p-8 shadow-2xl mb-4 overflow-hidden hover-shine">
-            <div class="card-shine"></div>
-            <h2 class="fancy-title text-4xl md:text-5xl font-bold text-center gradient-text mb-8 transition-all hover:scale-105">
-                Create Your Valentine's Proposal
-                <span class="inline-block heartbeat ml-2">💝</span>
-            </h2>
-            
-            <form id="proposal-form" class="space-y-8 max-w-md mx-auto">
-                <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
-                    <label class="block text-sm font-medium text-pink-600">Their Name</label>
-                    <input type="text" id="to-name" required 
-                        class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
-                </div>
-                
-                <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
-                    <label class="block text-sm font-medium text-pink-600">Your Name</label>
-                    <input type="text" id="from-name" required
-                        class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
-                </div>
 
-                <div class="space-y-2 transform transition-all duration-300 hover:scale-102">
-                    <label class="block text-sm font-medium text-pink-600">Choose a Message</label>
-                    <select id="message-select" 
-                        class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg">
-                        <option disabled value="">-- Select a message --</option>
-                        <option value="msg1">You make my heart skip a beat every time I see you. Will you be my Valentine? 💗</option>
-                        <option value="msg2">Every moment with you feels like magic. Would you do me the honor of being my Valentine? ✨</option>
-                        <option value="msg3">You're the missing piece to my puzzle. Be my Valentine? 🧩</option>
-                        <option value="msg4">Life is sweeter with you in it. Will you be my Valentine? 🍬</option>
-                        <option value="custom">Write your own message... ✍️</option>
-                    </select>
-                </div>
-
-                <div id="custom-message-container" class="space-y-2 hidden transform transition-all duration-300 hover:scale-102">
-                    <label class="block text-sm font-medium text-pink-600">Your Custom Message</label>
-                    <textarea id="custom-message" rows="4"
-                        class="w-full px-6 py-3 rounded-xl border-2 border-pink-300 focus:border-pink-500 focus:ring-4 focus:ring-pink-200 outline-none transition-all duration-300 hover:shadow-lg"></textarea>
-                </div>
-
-                <button type="submit" 
-                    class="w-full py-4 px-8 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-semibold shadow-lg button-pop">
-                    Create Proposal 💝
-                </button>
-            </form>
-
-            <div id="generated-link" class="mt-8 p-6 glass-morph rounded-2xl hidden transform transition-all duration-300 hover:scale-102">
-                <p class="text-pink-600 font-medium mb-4">Share this link with your Valentine:</p>
-                <div class="flex flex-wrap items-center gap-4">
-                    <a href="#" class="text-pink-500 break-all hover:text-pink-600 flex-1" id="proposal-link"></a>
-                    <button onclick="copyLink()" class="px-6 py-3 bg-pink-500 text-white rounded-xl button-pop">
-                        Copy 📋
-                    </button>
-                    <button onclick="whatsappShare()" class="px-6 py-3 bg-green-500 text-white rounded-xl button-pop">
-                        Share on WhatsApp
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Valentine Page -->
-        <div id="valentine-page" class="relative glass-morph rounded-3xl p-8 shadow-2xl text-center hidden hover-shine">
-            <div class="card-shine"></div>
-            <h1 id="title" class="fancy-title text-5xl md:text-6xl font-bold gradient-text mb-8"></h1>
-            <div id="message" class="text-2xl md:text-3xl text-pink-500 mb-12 leading-relaxed"></div>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <button onclick="acceptProposal()" id="yes-btn"
-                    class="px-12 py-4 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white font-semibold shadow-xl button-pop text-xl">
-                    Yes, I'd love to! 💖
-                </button>
-                <button id="no-btn"
-                onclick="noClicked()"
-                    class="px-12 py-4 rounded-full border-2 border-pink-500 text-pink-500 font-semibold hover:bg-pink-50 transition-all duration-300 text-xl">
-                    No way 🤔
-                </button>
-            </div>
-        </div>
-
-        <!-- Success Message -->
-        <div id="success-message" class="relative glass-morph rounded-3xl p-8 shadow-2xl text-center hidden hover-shine">
-            <div class="card-shine"></div>
-            <h2 class="fancy-title text-5xl md:text-6xl font-bold gradient-text mb-6">
-                🎉 Yay! Thank you for saying YES! 🎉
-            </h2>
-            <p class="text-2xl md:text-3xl text-pink-500">Get ready for the most amazing Valentine's Day ever! 💑</p>
-        </div>
+    <!-- Success Message -->
+    <div id="success-message" class="relative glass-morph rounded-3xl p-8 shadow-2xl text-center hidden hover-shine">
+        <div class="card-shine"></div>
+        <h2 class="fancy-title text-5xl md:text-6xl font-bold gradient-text mb-6">
+            🎉 Yay! Thank you for saying YES! 🎉
+        </h2>
+        <p class="text-2xl md:text-3xl text-pink-500">Get ready for the most amazing Valentine's Day ever! 💑</p>
+    </div>
     </div>
 
 
 
-    <footer class="fixed bottom-6 right-6 glass-morph text-pink-500 font-medium px-6 py-3 rounded-full text-sm md:text-base">
+    <footer
+        class="fixed bottom-6 right-6 glass-morph text-pink-500 font-medium px-6 py-3 rounded-full text-sm md:text-base">
         Created with ❤️ by <a href="https://anilunni.me" class="hover:text-pink-400 underline">anilunni.me</a>
     </footer>
-<script>
-    
-// Initialize GSAP
-gsap.config({
-    autoSleep: 60,
-    force3D: true
-});
+    <script>
 
-// Initial setup and page handling
-const params = new URLSearchParams(window.location.search);
-const isProposal = params.has('to') && params.has('from');
-
-if (isProposal) {
-    showValentinePage();
-} else {
-    gsap.from('#admin-page', {
-        duration: 1,
-        y: 50,
-        opacity: 0,
-        ease: 'power3.out'
-    });
-}
-
-// Handle message type selection
-document.getElementById('message-select').addEventListener('change', function(e) {
-    const customContainer = document.getElementById('custom-message-container');
-    if (e.target.value === 'custom') {
-        customContainer.classList.remove('hidden');
-        gsap.from(customContainer, {
-            duration: 0.5,
-            height: 0,
-            opacity: 0,
-            ease: 'power2.out'
+        // Initialize GSAP
+        gsap.config({
+            autoSleep: 60,
+            force3D: true
         });
-    } else {
-        customContainer.classList.add('hidden');
-    }
-});
 
-// Handle form submission
-document.getElementById('proposal-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const toName = document.getElementById('to-name').value;
-    const fromName = document.getElementById('from-name').value;
-    const messageSelect = document.getElementById('message-select');
-    let message;
-    
-    if (messageSelect.value === 'custom') {
-        message = document.getElementById('custom-message').value;
-    } else {
-        message = messageSelect.options[messageSelect.selectedIndex].text;
-    }
-    
-    const url = `${window.location.origin}${window.location.pathname}?to=${encodeURIComponent(toName)}&from=${encodeURIComponent(fromName)}&message=${encodeURIComponent(message)}`;
-    
-    document.getElementById('proposal-link').href = url;
-    document.getElementById('proposal-link').textContent = url;
-    
-    const generatedLink = document.getElementById('generated-link');
-    generatedLink.classList.remove('hidden');
-    gsap.from(generatedLink, {
-        duration: 0.8,
-        y: 30,
-        opacity: 0,
-        ease: 'power3.out'
-    });
-});
+        // Initial setup and page handling
+        const params = new URLSearchParams(window.location.search);
+        const isProposal = params.has('to') && params.has('from');
 
-// Show Valentine page with animations
-function showValentinePage() {
-    document.getElementById('admin-page').style.display = 'none';
-    const valentinePage = document.getElementById('valentine-page');
-    valentinePage.classList.remove('hidden');
-    
-    const toName = params.get('to');
-    const fromName = params.get('from');
-    const message = params.get('message');
-
-    gsap.from(valentinePage, {
-        duration: 1.2,
-        scale: 0.8,
-        opacity: 0,
-        ease: 'elastic.out(1, 0.7)'
-    });
-
-    document.getElementById('title').textContent = `Dear ${toName}`;
-    document.getElementById('message').innerHTML = `${decodeURIComponent(message)}<br><br>With love,<br>${fromName}`;
-    
-    startHeartRain();
-}
-
-// No button evasion animation
-function moveNoButton() {
-    const btn = document.getElementById('no-btn');
-    const valentinePage = document.getElementById('valentine-page');
-    const maxX = valentinePage.offsetWidth - btn.offsetWidth;
-    const maxY = valentinePage.offsetHeight - btn.offsetHeight;
-    const newX = Math.random() * (maxX - 50);
-    const newY = Math.random() * (maxY - 60);
-    gsap.to(btn, {
-        duration: 0.1,
-        x: newX,
-        y: newY,
-        ease: 'power1.out'
-    });
-}
-
-
-document.getElementById('no-btn').addEventListener('mouseover', moveNoButton);
-
-// Heart animations
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'fixed text-2xl pointer-events-none';
-    heart.innerHTML = ['❤️', '💖', '💝', '💕', '💗'][Math.floor(Math.random() * 5)];
-    heart.style.left = `${Math.random() * 100}vw`;
-    heart.style.top = '-50px';
-    document.body.appendChild(heart);
-
-    gsap.to(heart, {
-        duration: 3,
-        y: window.innerHeight + 100,
-        rotation: 'random(-45, 45)',
-        ease: 'power1.in',
-        onComplete: () => heart.remove()
-    });
-}
-
-function startHeartRain() {
-    setInterval(createHeart, 300);
-}
-
-// Accept proposal animation
-function acceptProposal() {
-    const valentinePage = document.getElementById('valentine-page');
-    const successMessage = document.getElementById('success-message');
-    
-    gsap.to(valentinePage, {
-        duration: 0.5,
-        scale: 0.8,
-        opacity: 0,
-        onComplete: () => {
-            valentinePage.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-            gsap.from(successMessage, {
+        if (isProposal) {
+            showValentinePage();
+        } else {
+            gsap.from('#admin-page', {
                 duration: 1,
+                y: 50,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+        }
+
+        // Handle message type selection
+        document.getElementById('message-select').addEventListener('change', function (e) {
+            const customContainer = document.getElementById('custom-message-container');
+            if (e.target.value === 'custom') {
+                customContainer.classList.remove('hidden');
+                gsap.from(customContainer, {
+                    duration: 0.5,
+                    height: 0,
+                    opacity: 0,
+                    ease: 'power2.out'
+                });
+            } else {
+                customContainer.classList.add('hidden');
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('proposal-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const toName = document.getElementById('to-name').value;
+            const fromName = document.getElementById('from-name').value;
+            const messageSelect = document.getElementById('message-select');
+            let message;
+
+            if (messageSelect.value === 'custom') {
+                message = document.getElementById('custom-message').value;
+            } else {
+                message = messageSelect.options[messageSelect.selectedIndex].text;
+            }
+
+            const url = `${window.location.origin}${window.location.pathname}?to=${encodeURIComponent(toName)}&from=${encodeURIComponent(fromName)}&message=${encodeURIComponent(message)}`;
+
+            document.getElementById('proposal-link').href = url;
+            document.getElementById('proposal-link').textContent = url;
+
+            const generatedLink = document.getElementById('generated-link');
+            generatedLink.classList.remove('hidden');
+            gsap.from(generatedLink, {
+                duration: 0.8,
+                y: 30,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+        });
+
+        // Show Valentine page with animations
+        function showValentinePage() {
+            document.getElementById('admin-page').style.display = 'none';
+            const valentinePage = document.getElementById('valentine-page');
+            valentinePage.classList.remove('hidden');
+
+            const toName = params.get('to');
+            const fromName = params.get('from');
+            const message = params.get('message');
+
+            gsap.from(valentinePage, {
+                duration: 1.2,
                 scale: 0.8,
                 opacity: 0,
                 ease: 'elastic.out(1, 0.7)'
             });
-        }
-    });
 
-    // Celebration hearts burst
-    for (let i = 0; i < 50; i++) {
-        setTimeout(() => {
+            document.getElementById('title').textContent = `Dear ${toName}`;
+            document.getElementById('message').innerHTML = `${decodeURIComponent(message)}<br><br>With love,<br>${fromName}`;
+
+            startHeartRain();
+        }
+
+        // No button evasion animation
+        function moveNoButton() {
+            const btn = document.getElementById('no-btn');
+            const valentinePage = document.getElementById('valentine-page');
+            const pageRect = valentinePage.getBoundingClientRect();
+
+            // Get container dimensions
+            const containerWidth = pageRect.width;
+            const containerHeight = pageRect.height;
+
+            // Get button dimensions
+            const btnRect = btn.getBoundingClientRect();
+            const btnWidth = btnRect.width;
+            const btnHeight = btnRect.height;
+
+            // Calculate maximum positions relative to container
+            const maxX = containerWidth - btnWidth - 40; // 40px padding
+            const maxY = containerHeight - btnHeight - 40;
+
+            // Generate random position within container bounds
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            // Apply the new position
+            gsap.to(btn, {
+                duration: 0.1,
+                left: newX + 'px',
+                top: newY + 'px',
+                position: 'absolute',
+                ease: 'power1.out'
+            });
+        }
+
+
+        document.getElementById('no-btn').addEventListener('mouseover', moveNoButton);
+
+        // Heart animations
+        function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'fixed text-2xl pointer-events-none';
             heart.innerHTML = ['❤️', '💖', '💝', '💕', '💗'][Math.floor(Math.random() * 5)];
-            heart.style.left = '50vw';
-            heart.style.top = '50vh';
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = '-50px';
             document.body.appendChild(heart);
 
             gsap.to(heart, {
-                duration: 2,
-                x: 'random(-500, 500)',
-                y: 'random(-500, 500)',
-                rotation: 'random(-360, 360)',
-                ease: 'power2.out',
+                duration: 3,
+                y: window.innerHeight + 100,
+                rotation: 'random(-45, 45)',
+                ease: 'power1.in',
                 onComplete: () => heart.remove()
             });
-        }, i * 50);
-    }
-}
+        }
 
-// Create your own button functionality
-function createYourOwn() {
-    window.history.replaceState({}, document.title, window.location.pathname);
-    
-    const currentPage = document.querySelector('#valentine-page:not(.hidden), #success-message:not(.hidden)');
-    if (currentPage) {
-        gsap.to(currentPage, {
-            duration: 0.5,
-            scale: 0.8,
-            opacity: 0,
-            onComplete: () => {
-                currentPage.classList.add('hidden');
-                document.getElementById('admin-page').style.display = 'block';
-                gsap.from('#admin-page', {
-                    duration: 0.8,
+        function startHeartRain() {
+            setInterval(createHeart, 300);
+        }
+
+        // Accept proposal animation
+        function acceptProposal() {
+            const valentinePage = document.getElementById('valentine-page');
+            const successMessage = document.getElementById('success-message');
+
+            gsap.to(valentinePage, {
+                duration: 0.5,
+                scale: 0.8,
+                opacity: 0,
+                onComplete: () => {
+                    valentinePage.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    gsap.from(successMessage, {
+                        duration: 1,
+                        scale: 0.8,
+                        opacity: 0,
+                        ease: 'elastic.out(1, 0.7)'
+                    });
+                }
+            });
+
+            // Celebration hearts burst
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'fixed text-2xl pointer-events-none';
+                    heart.innerHTML = ['❤️', '💖', '💝', '💕', '💗'][Math.floor(Math.random() * 5)];
+                    heart.style.left = '50vw';
+                    heart.style.top = '50vh';
+                    document.body.appendChild(heart);
+
+                    gsap.to(heart, {
+                        duration: 2,
+                        x: 'random(-500, 500)',
+                        y: 'random(-500, 500)',
+                        rotation: 'random(-360, 360)',
+                        ease: 'power2.out',
+                        onComplete: () => heart.remove()
+                    });
+                }, i * 50);
+            }
+        }
+
+        // Create your own button functionality
+        function createYourOwn() {
+            window.history.replaceState({}, document.title, window.location.pathname);
+
+            const currentPage = document.querySelector('#valentine-page:not(.hidden), #success-message:not(.hidden)');
+            if (currentPage) {
+                gsap.to(currentPage, {
+                    duration: 0.5,
                     scale: 0.8,
                     opacity: 0,
-                    ease: 'power3.out'
+                    onComplete: () => {
+                        currentPage.classList.add('hidden');
+                        document.getElementById('admin-page').style.display = 'block';
+                        gsap.from('#admin-page', {
+                            duration: 0.8,
+                            scale: 0.8,
+                            opacity: 0,
+                            ease: 'power3.out'
+                        });
+                    }
                 });
             }
-        });
-    }
-}
-
-// Share functionality
-function copyLink() {
-    const link = document.getElementById('proposal-link');
-    navigator.clipboard.writeText(link.href);
-    
-    // Show copy feedback
-    const btn = document.querySelector('button[onclick="copyLink()"]');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Copied! ✅';
-    setTimeout(() => btn.innerHTML = originalText, 2000);
-}
-
-function whatsappShare() {
-    const link = document.getElementById('proposal-link');
-    const message = `Hey! I have a special message for you. Click on the link to read it: ${link.href}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-}
-
-let noClickCount = 0;
-function noClicked() {
-    moveNoButton();
-    const yesBtn = document.getElementById('yes-btn');
-    noClickCount++;
-    
-    const newScale = 1 + noClickCount * 0.5; 
-    
-    gsap.to(yesBtn, {
-        duration: 0.5,
-        scale: newScale,
-        ease: 'back.out(1.7)'
-    });
-    if (noClickCount >= 5) {
-        gsap.to(yesBtn, {
-            duration: 1,
-            scale: newScale + 2,
-            ease: 'elastic.out(1, 0.3)'
-        });
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createHeart, i * 50);
         }
-    }
-}
 
-</script>
+        // Share functionality
+        function copyLink() {
+            const link = document.getElementById('proposal-link');
+            navigator.clipboard.writeText(link.href);
+
+            // Show copy feedback
+            const btn = document.querySelector('button[onclick="copyLink()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Copied! ✅';
+            setTimeout(() => btn.innerHTML = originalText, 2000);
+        }
+
+        function whatsappShare() {
+            const link = document.getElementById('proposal-link');
+            const message = `Hey! I have a special message for you. Click on the link to read it: ${link.href}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        let noClickCount = 0;
+        function noClicked() {
+            moveNoButton();
+            const yesBtn = document.getElementById('yes-btn');
+            noClickCount++;
+
+            const newScale = 1 + noClickCount * 0.5;
+
+            gsap.to(yesBtn, {
+                duration: 0.5,
+                scale: newScale,
+                ease: 'back.out(1.7)'
+            });
+            if (noClickCount >= 5) {
+                gsap.to(yesBtn, {
+                    duration: 1,
+                    scale: newScale + 2,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createHeart, i * 50);
+                }
+            }
+        }
+
+    </script>
 </body>
+
 </html>
